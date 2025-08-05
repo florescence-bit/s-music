@@ -1,0 +1,26 @@
+
+@font-face {
+  font-family: 'SamsungOne';
+  src: url('/assets/SamsungOne.woff') format('woff');
+  font-weight: normal;
+  font-style: normal;
+}
+.logo {
+  background: linear-gradient(to top left, #cee9ff, white, #ffc9d8);
+  background-clip: text;
+  color: transparent;
+}
+body {
+  font-family: 'SamsungOne';
+  background-color:black;
+  color: white;
+  margin: 0;
+  padding: 20px;
+}
+.icons {
+  display: flex;
+  gap: 10px;
+  height: 16px;
+  width: 16px;
+  float: right;
+}
