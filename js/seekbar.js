@@ -1,40 +1,34 @@
-class seekbar {
-    constructor() {
-        this.seekbar = document.querySelector('.seekbar');
-        this.seekbarProgress = document.querySelector('.seekbar-progress');
-        this.seekbarButton = document.querySelector('.seekbar-button');
-        this.isDragging = false;
+// created by SAN :>
+let H, W, san, {sin, cos, PI, hypot, random, round} = Math;
 
-        this.init();
-    }
 
-    init() {
-        this.seekbar.addEventListener('mousedown', (e) => this.onMouseDown(e));
-        document.addEventListener('mousemove', (e) => this.onMouseMove(e));
-        document.addEventListener('mouseup', () => this.onMouseUp());
-    }
 
-    onMouseDown(event) {
-        this.isDragging = true;
-        this.updateSeekbar(event);
-    }
-
-    onMouseMove(event) {
-        if (this.isDragging) {
-            this.updateSeekbar(event);
-        }
-    }
-
-    onMouseUp() {
-        this.isDragging = false;
-    }
-
-    updateSeekbar(event) {
-        const rect = this.seekbar.getBoundingClientRect();
-        const offsetX = event.clientX - rect.left;
-        const percentage = Math.min(Math.max(offsetX / rect.width, 0), 1);
-        
-        this.seekbarProgress.style.width = `${percentage * 100}%`;
-        this.seekbarButton.style.left = `${percentage * 100}%`;
-    }
+const Loop = () => {
+    san.clearRect(0, 0, W, H);
+    san.fillStyle = "rgba(0,200,300,.5)";
+   
+    webkitRequestAnimationFrame(Loop);
 }
+const init = () => {
+    document.body.style.margin = 0;
+    let c = document.createElement("canvas");
+    document.body.appendChild(c);
+    c.style.position = "fixed";
+    c.style.background = "black";
+    c.style.width = "100vw";
+    c.style.height = "100vh";
+    c.height = H = innerHeight*2;
+    c.width = W = innerWidth*2;
+    san = c.getContext('2d'); 
+    
+    window.onresize = () => {
+        c.height = H = innerHeight * 2;
+        c.width = W = innerWidth * 2;
+    }
+
+    c.ontouchstart = Hold;
+    c.ontouchmove = Drag;
+    c.ontouchend = undefined;
+    Loop();
+};
+onload = init;
