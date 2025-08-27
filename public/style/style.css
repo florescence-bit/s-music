@@ -19,14 +19,17 @@ body {
 .hicon {
   display: flex;
   gap: 10px;
-  height: 16px;
-  width: 16px;
+  height: 20px;
+  width: 20px;
   float: right;
   margin-left: 15px;
 }
 
 header {
   padding: 5vw;
+}
+.header {
+  font-size: 25px;
 }
 .pages {
   display: flex;
