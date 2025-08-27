@@ -165,4 +165,37 @@ header {
 #etime {
   right: 27px;
 }
+.label {
+  font-size: 18px;
+  font-weight: bold;
+  margin-left: 25px;
+  color: gray;
+}
+.hscroll {
+  width: calc(100% - 30px);
+  height: 150px;
+  display: flex;
+  overflow-x: auto;
+  gap: 20px;
+  padding: 20px 15px;
+  scroll-behavior: smooth;
 
+}
+
+.card-img {
+  width: 130px;
+  height: 130px;
+  border-radius: 30px;
+  background-color: gray;
+  background-image: url('/assets/icons/music.svg');
+  background-position: center;
+  background-size: 70%;
+  background-repeat: no-repeat;
+}
+.card-title {
+  font-size: 14px;
+  font-weight: bold;
+  margin-top: 5px;
+  color: rgb(230, 230, 230);
+  text-align: center;
+}
