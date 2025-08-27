@@ -42,7 +42,6 @@ header {
 .pages > span {
   padding: 4px;
   margin: 0 5px;
-  cursor: pointer;
   
 }
 ::-webkit-scrollbar {
@@ -94,7 +93,6 @@ header {
   left: 25px;
   top: 80px;
   height: 20px;
-  cursor: pointer;
 }
 
 .player-controls {
@@ -112,7 +110,6 @@ header {
 .player-icon {
   width: 30px;
   height: 30px;
-  cursor: pointer;
 }
 
 .suggestion-box {
