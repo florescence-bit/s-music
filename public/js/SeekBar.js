@@ -54,10 +54,10 @@ class SeekBar {
     addEventListeners() {
         window.addEventListener("resize", this.handleResize);
         window.addEventListener("mousemove", this.handleMove);
-        window.addEventListener("mousedown", this.handleHold);
+        this.canvas.addEventListener("mousedown", this.handleHold);
         window.addEventListener("mouseup", this.handleRelease);
         window.addEventListener("touchmove", this.handleMove);
-        window.addEventListener("touchstart", this.handleHold);
+        this.canvas.addEventListener("touchstart", this.handleHold);
         window.addEventListener("touchend", this.handleRelease);
     }
 
