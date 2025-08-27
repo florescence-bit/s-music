@@ -33,11 +33,11 @@ header {
   align-items: center;
   justify-content: center;
   width: 100%;
-  font-size: small;
+  font-size: x-small;
   color: rgb(119, 119, 119);
 }
 .pages > span {
-  padding: 10px;
+  padding: 5px;
   margin: 0 5px;
   cursor: pointer;
   
@@ -81,7 +81,7 @@ header {
 }
 
 .selcPG {
-  font-size: 25px;
+  font-size:small;
   color: rgb(255, 255, 255);
 }
 
