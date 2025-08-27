@@ -118,7 +118,7 @@ class SeekBar {
 
         this.ctx.lineTo(length + this.padding, this.trackHeight + 13);
         this.ctx.closePath();
-        this.ctx.fillStyle = `rgba(230,150,150,${opacity})`;
+        this.ctx.fillStyle = `rgba(255,230,230,${opacity})`;
         this.ctx.fill();
     }
 
