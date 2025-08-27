@@ -33,7 +33,7 @@ header {
   align-items: center;
   justify-content: center;
   width: 100%;
-  font-size: small;
+  font-size: 10px;
   color: rgb(119, 119, 119);
 }
 .pages > span {
