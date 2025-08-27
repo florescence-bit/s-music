@@ -188,16 +188,6 @@ header {
   background-position: center;
   background-size: cover;
   background-repeat: no-repeat;
-
-}
-.card-img::after {
-  height: 100%;
-  width: 100%;
-  background-color: gray;
-  background-image: url('/assets/icons/music.svg');
-  background-position: center;
-  background-size: 50%;
-  background-repeat: no-repeat;
 }
 .card-title {
   font-size: 13px;
