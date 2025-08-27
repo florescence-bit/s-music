@@ -1,4 +1,3 @@
-
 @font-face {
   font-family: 'SamsungOne';
   src: url('/assets/SamsungOne.woff') format('woff');
@@ -70,6 +69,7 @@ header {
   background: rgba(50, 50, 50, 0.5);
   border-radius: 40px;
   box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+  backdrop-filter: blur(3px);
 }
 
 .bgi {
@@ -91,20 +91,17 @@ header {
   left: 25px;
   top: 80px;
   height: 20px;
-  background-color: rgba(119, 119, 119, .4);
   cursor: pointer;
-
 }
 
 .player-controls {
   display: flex;
-  justify-content: center;
+  justify-content: space-around;  
   align-items: center;
-  gap: 40px;
   padding: 10px;
-  width: 400px;
+  width: 300px;
   position: absolute;
-  left: calc(50% - 200px);
+  left: calc(50% - 160px);
   bottom: 5px;
   height: 20px;
 }
@@ -113,8 +110,8 @@ header {
   width: 30px;
   height: 30px;
   cursor: pointer;
-  transition: transform 0.2s ease-in-out;
 }
+
 .suggestion-box {
   width: 100%;
   height: 100%;
@@ -127,7 +124,7 @@ header {
 .player-details {
   position: absolute;
   left: 80px;
-  top: 20px;
+  top: 25px;
   color: white;
 }
 .music-i {
@@ -136,4 +133,102 @@ header {
   top: 20px;
   width: 50px;
   height: 50px;
+}
+.ic {
+  cursor: pointer;
+}
+@keyframes pop {
+    0% { transform: scale(1); }
+    50% { transform: scale(.85); }
+    100% { transform: scale(1); }
+}
+
+.time {
+  font-size: 12px;
+  color: #ccc;
+  position: absolute;
+  bottom: 30px;
+}
+#ctime {
+  left: 27px;
+}
+#etime {
+  right: 27px;
+}
+
+
+/*--------------*/
+.music-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(170px, 1fr));
+  gap: 28px;
+  padding: 12px 10px 18px 10px;
+}
+
+.music-card {
+  background: rgba(255,255,255,0.09);
+  border-radius: 16px;
+  box-shadow: 0 2px 12px 0 rgba(0,0,0,0.10);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 18px 12px 14px 12px;
+  transition: transform 0.18s, box-shadow 0.18s, background 0.18s;
+  cursor: pointer;
+}
+
+.music-card:hover {
+  transform: translateY(-8px) scale(1.045);
+  box-shadow: 0 10px 28px 0 rgba(0,0,0,0.16);
+  background: rgba(255,255,255,0.15);
+}
+
+.music-img {
+  width: 90px;
+  height: 90px;
+  border-radius: 12px;
+  object-fit: cover;
+  margin-bottom: 14px;
+  background: #222;
+  box-shadow: 0 1px 6px 0 rgba(0,0,0,0.13);
+}
+
+.music-info {
+  text-align: center;
+}
+
+.music-title {
+  font-size: 1.08em;
+  color: #fff;
+  font-weight: 600;
+  margin-bottom: 3px;
+  display: block;
+  line-height: 1.2;
+}
+
+.music-artist {
+  font-size: 0.97em;
+  color: #c7c7c7;
+  display: block;
+  line-height: 1.1;
+}
+
+@media (max-width: 700px) {
+  .recently-played,
+  .recommended-playlist {
+    gap: 18px;
+    justify-content: center;
+    padding: 0 6vw 8px 6vw;
+  }
+  .rp-card {
+    width: 40vw;
+    min-width: 110px;
+    max-width: 160px;
+    padding: 16px 8px 12px 8px;
+  }
+  .rp-img {
+    width: 54px;
+    height: 54px;
+    margin-bottom: 10px;
+  }
 }
