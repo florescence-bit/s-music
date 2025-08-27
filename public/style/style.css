@@ -37,7 +37,7 @@ header {
   color: rgb(119, 119, 119);
 }
 .pages > span {
-  padding: 5px;
+  padding: 4px;
   margin: 0 5px;
   cursor: pointer;
   
@@ -124,8 +124,20 @@ header {
 .player-details {
   position: absolute;
   left: 80px;
-  top: 25px;
+  top: 22px;
   color: white;
+}
+.player-title {
+  font-size: 20px;
+  font-weight: bold;
+  margin: 0;
+  padding: 0;
+}
+.player-artist {
+  font-size: 12px;
+  margin: 0;
+  padding: 0;
+  color: #ccc;
 }
 .music-i {
   position: absolute;
@@ -156,79 +168,3 @@ header {
   right: 27px;
 }
 
-
-/*--------------*/
-.music-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(170px, 1fr));
-  gap: 28px;
-  padding: 12px 10px 18px 10px;
-}
-
-.music-card {
-  background: rgba(255,255,255,0.09);
-  border-radius: 16px;
-  box-shadow: 0 2px 12px 0 rgba(0,0,0,0.10);
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  padding: 18px 12px 14px 12px;
-  transition: transform 0.18s, box-shadow 0.18s, background 0.18s;
-  cursor: pointer;
-}
-
-.music-card:hover {
-  transform: translateY(-8px) scale(1.045);
-  box-shadow: 0 10px 28px 0 rgba(0,0,0,0.16);
-  background: rgba(255,255,255,0.15);
-}
-
-.music-img {
-  width: 90px;
-  height: 90px;
-  border-radius: 12px;
-  object-fit: cover;
-  margin-bottom: 14px;
-  background: #222;
-  box-shadow: 0 1px 6px 0 rgba(0,0,0,0.13);
-}
-
-.music-info {
-  text-align: center;
-}
-
-.music-title {
-  font-size: 1.08em;
-  color: #fff;
-  font-weight: 600;
-  margin-bottom: 3px;
-  display: block;
-  line-height: 1.2;
-}
-
-.music-artist {
-  font-size: 0.97em;
-  color: #c7c7c7;
-  display: block;
-  line-height: 1.1;
-}
-
-@media (max-width: 700px) {
-  .recently-played,
-  .recommended-playlist {
-    gap: 18px;
-    justify-content: center;
-    padding: 0 6vw 8px 6vw;
-  }
-  .rp-card {
-    width: 40vw;
-    min-width: 110px;
-    max-width: 160px;
-    padding: 16px 8px 12px 8px;
-  }
-  .rp-img {
-    width: 54px;
-    height: 54px;
-    margin-bottom: 10px;
-  }
-}

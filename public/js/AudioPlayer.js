@@ -7,7 +7,7 @@ class MusicPlayer {
         }
         this.audio = new Audio();
         this.songs = songs;
-        this.currentIndex = 0;
+        this.currentIndex = 7;
         this.isPlaying = false;
         this.shuffle = false;
         this.repeat = false;
