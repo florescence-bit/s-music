@@ -196,3 +196,9 @@ header {
   color: rgb(230, 230, 230);
   text-align: center;
 }
+.home-page {
+  margin-top: -20px;
+  height: calc(100vh - 150px);
+  overflow-y: auto;
+  scroll-behavior: smooth;
+}
