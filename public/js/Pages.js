@@ -40,7 +40,7 @@ class Pages {
     }
 
     // Show page by id
-    showPage(pageId) {
+    async showPage(pageId) {
         // Hide all pages
         document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
         // Show selected page
@@ -49,7 +49,7 @@ class Pages {
             page.classList.add('active');
             this.currentPage = pageId;
             // Trigger page-specific render
-            this.renderPage(pageId);
+            await this.renderPage(pageId);
         }
         // Update nav highlighting
         document.querySelectorAll('.pages span').forEach(s => s.classList.remove('selcPG'));
@@ -69,10 +69,10 @@ class Pages {
     }
 
     // Render page based on current page
-    renderPage(pageId) {
+    async renderPage(pageId) {
         switch(pageId) {
             case 'home-page':
-                this.renderHome();
+                await this.renderHome();
                 break;
             case 'tracks-page':
                 this.renderTracks();
@@ -92,50 +92,91 @@ class Pages {
     // Render home page with API data
     async renderHome() {
         try {
+            const featuredGrid = document.getElementById('featured-grid');
+            const trendingGrid = document.getElementById('trending-grid');
+            const recentGrid = document.getElementById('recent-grid');
+
+            // Show loading state
+            if (featuredGrid) featuredGrid.innerHTML = '<div style="grid-column: 1/-1; text-align: center; color: #b3b3b3; padding: 20px;">Loading featured...</div>';
+            if (trendingGrid) trendingGrid.innerHTML = '<div style="grid-column: 1/-1; text-align: center; color: #b3b3b3; padding: 20px;">Loading trending...</div>';
+            if (recentGrid) recentGrid.innerHTML = '<div style="grid-column: 1/-1; text-align: center; color: #b3b3b3; padding: 20px;">Loading new releases...</div>';
+
             const [featured, trending, recent] = await Promise.all([
-                fetch('/api/featured').then(r => r.json()),
-                fetch('/api/trending').then(r => r.json()),
-                fetch('/api/recent').then(r => r.json())
+                fetch('/api/featured').then(r => r.json()).catch(e => { console.error('Featured error:', e); return {}; }),
+                fetch('/api/trending').then(r => r.json()).catch(e => { console.error('Trending error:', e); return {}; }),
+                fetch('/api/recent').then(r => r.json()).catch(e => { console.error('Recent error:', e); return {}; })
             ]);
 
             // Render featured
-            const featuredGrid = document.getElementById('featured-grid');
-            featuredGrid.innerHTML = '';
-            if (featured.featured) {
-                featured.featured.forEach(section => {
-                    section.tracks.forEach(track => {
-                        if (track.previewUrl) {
-                            featuredGrid.appendChild(this.createTrackCard(track));
+            if (featuredGrid) {
+                featuredGrid.innerHTML = '';
+                let count = 0;
+                if (featured.featured) {
+                    featured.featured.forEach(section => {
+                        if (section.tracks) {
+                            section.tracks.forEach(track => {
+                                if (track.previewUrl && count < 12) {
+                                    featuredGrid.appendChild(this.createTrackCard(track));
+                                    count++;
+                                }
+                            });
                         }
                     });
-                });
+                }
+                if (count === 0) {
+                    featuredGrid.innerHTML = '<div style="grid-column: 1/-1; text-align: center; color: #b3b3b3; padding: 20px;">No featured playlists available</div>';
+                }
             }
 
             // Render trending
-            const trendingGrid = document.getElementById('trending-grid');
-            trendingGrid.innerHTML = '';
-            if (trending.results) {
-                trending.results.slice(0, 12).forEach(track => {
-                    if (track.previewUrl) {
-                        trendingGrid.appendChild(this.createTrackCard(track));
-                    }
-                });
+            if (trendingGrid) {
+                trendingGrid.innerHTML = '';
+                let count = 0;
+                if (trending.results) {
+                    trending.results.forEach(track => {
+                        if (track.previewUrl && count < 12) {
+                            trendingGrid.appendChild(this.createTrackCard(track));
+                            count++;
+                        }
+                    });
+                }
+                if (count === 0) {
+                    trendingGrid.innerHTML = '<div style="grid-column: 1/-1; text-align: center; color: #b3b3b3; padding: 20px;">No trending tracks available</div>';
+                }
             }
 
             // Render recent
-            const recentGrid = document.getElementById('recent-grid');
-            recentGrid.innerHTML = '';
-            if (recent.recent) {
-                recent.recent.forEach(section => {
-                    section.tracks.forEach(track => {
-                        if (track.previewUrl) {
-                            recentGrid.appendChild(this.createTrackCard(track));
+            if (recentGrid) {
+                recentGrid.innerHTML = '';
+                let count = 0;
+                if (recent.recent) {
+                    recent.recent.forEach(section => {
+                        if (section.tracks) {
+                            section.tracks.forEach(track => {
+                                if (track.previewUrl && count < 12) {
+                                    recentGrid.appendChild(this.createTrackCard(track));
+                                    count++;
+                                }
+                            });
                         }
                     });
-                });
+                }
+                if (count === 0) {
+                    recentGrid.innerHTML = '<div style="grid-column: 1/-1; text-align: center; color: #b3b3b3; padding: 20px;">No new releases available</div>';
+                }
             }
         } catch (err) {
             console.error('Error rendering home:', err);
+            const grids = [
+                document.getElementById('featured-grid'),
+                document.getElementById('trending-grid'),
+                document.getElementById('recent-grid')
+            ];
+            grids.forEach(grid => {
+                if (grid) {
+                    grid.innerHTML = '<div style="grid-column: 1/-1; text-align: center; color: #ff6b6b; padding: 20px;">Error loading content. Check console.</div>';
+                }
+            });
         }
     }
 
