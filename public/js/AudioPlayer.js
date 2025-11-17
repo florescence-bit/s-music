@@ -66,8 +66,18 @@ class MusicPlayer {
         if (index < 0 || index >= this.songs.length) return;
         this.currentIndex = index;
         const song = this.songs[index];
-        this.audio.src = `https://www.dropbox.com/s/${song.s}?raw=1`;
-        document.getElementById("bgi").style.backgroundImage = `url(https://www.dropbox.com/s/${song.i}?raw=1)`;
+        // Support both full URLs (e.g. iTunes previewUrl / remote images) and legacy dropbox-style ids
+        if (song.s && (song.s.startsWith('http://') || song.s.startsWith('https://'))) {
+            this.audio.src = song.s;
+        } else {
+            this.audio.src = `https://www.dropbox.com/s/${song.s}?raw=1`;
+        }
+
+        if (song.i && (song.i.startsWith('http://') || song.i.startsWith('https://'))) {
+            document.getElementById("bgi").style.backgroundImage = `url(${song.i})`;
+        } else {
+            document.getElementById("bgi").style.backgroundImage = `url(https://www.dropbox.com/s/${song.i}?raw=1)`;
+        }
 
         document.querySelector(".player-title").textContent = song.n;
         document.querySelector(".player-artist").textContent = song.a;
